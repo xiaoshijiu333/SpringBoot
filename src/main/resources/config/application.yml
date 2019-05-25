@@ -1,0 +1,35 @@
+#指定tomcat端口
+server:
+  port: 8081
+
+spring:
+  profiles:
+#指定当前的环境------在pom文件中取值使用@profiles.active@
+    active: @profiles.active@
+#修改默认国际化识别的文件前缀（可以指定包名）
+  messages:
+    basename: "i18n.login"
+#指定数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+#自定义Starter配置，yml不会乱码
+  hello:
+    age: 12
+    name: 小郭
+
+#修改默认静态资源映射的路径
+#  resources:
+#    static-locations: ["classpath:/res/"]
+
+#指定log配置文件的位置------在当前文件中取值使用${spring.profiles.active}
+logging:
+  config: classpath:config/${spring.profiles.active}/log4j2.xml
+
+#mybatis相关配置
+mybatis:
+  #指定mapper.xml的位置
+  mapper-locations: classpath:mapper/*.xml
