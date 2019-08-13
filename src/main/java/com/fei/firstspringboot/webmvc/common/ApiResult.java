@@ -14,14 +14,14 @@ import java.util.List;
 public class ApiResult<T> {
     private Integer code;
     private String data;
-    private List<T> model;
+    private T model;
 
     /**
      * 响应成功，返回数据
      * @param model List形式的集合数据
      * @return 返回成功的携带数据的结果ApiResult
      */
-    public static <T>  ApiResult success(List<T> model){
+    public static <T>  ApiResult success(T model){
         ApiResult apiResult = new ApiResult<>();
         apiResult.setCode(200);
         apiResult.setData("请求成功");

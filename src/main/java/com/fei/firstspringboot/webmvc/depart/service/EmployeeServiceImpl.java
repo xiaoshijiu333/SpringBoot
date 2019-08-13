@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
+
 /**
  * @Author: xiaoshijiu
  * @Date: 2019/6/13
@@ -31,4 +33,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setEmployeeName("张三");
         return employeeTKMapper.insertSelective(employee);
     }
+
+    @Override
+    public List<Employee> getAll() {
+        Example example = new Example(Employee.class);
+        example.createCriteria().andEqualTo("employeeSex", "男");
+        List<Employee> list = employeeTKMapper.selectByExample(example);
+        return list;
+    }
+
 }
